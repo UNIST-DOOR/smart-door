@@ -1,0 +1,20 @@
+# ninja log v5
+1	64	0	C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/arm64-v8a/CMakeFiles/cmake.verify_globs	75984ea28b9f53bf
+130	7028	7720272720155130	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/States.cpp.o	b1377be58a25d47a
+101	8075	7720272730410829	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/EventEmitters.cpp.o	2565f70df88468cc
+139	9724	7720272747233042	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/Props.cpp.o	b80ba29b838e1410
+92	8861	7720272738495440	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/BlePlxJSI-generated.cpp.o	db860f842a48d849
+110	9559	7720272745560629	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/BlePlx-generated.cpp.o	289c5ed37e847390
+148	11031	7720272760558279	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/ShadowNodes.cpp.o	4b423c8e5cacedbc
+158	11009	7720272760204421	CMakeFiles/appmodules.dir/C_/Program_Files/DoorApp/SmartDoorManager/android/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	afc729da8e3bc268
+122	11464	7720272764963066	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/ComponentDescriptors.cpp.o	58cee7d088e9d1bc
+167	11817	7720272768387950	CMakeFiles/appmodules.dir/OnLoad.cpp.o	3999f06de9915586
+11817	12087	7720272771469055	C:/Program Files/DoorApp/SmartDoorManager/android/app/build/intermediates/cxx/Debug/r6p2235l/obj/arm64-v8a/libappmodules.so	26c6f26913f1ef2a
+93	1352	7720825315826582	build.ninja	d3dc881e2825bb15
+1	23	0	C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/arm64-v8a/CMakeFiles/cmake.verify_globs	75984ea28b9f53bf
+21	84	0	C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/arm64-v8a/CMakeFiles/cmake.verify_globs	75984ea28b9f53bf
+12	43	0	C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/arm64-v8a/CMakeFiles/cmake.verify_globs	75984ea28b9f53bf
+4	29	0	C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/arm64-v8a/CMakeFiles/cmake.verify_globs	75984ea28b9f53bf
+5	34	0	C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/arm64-v8a/CMakeFiles/cmake.verify_globs	75984ea28b9f53bf
+8	60	0	C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/arm64-v8a/CMakeFiles/cmake.verify_globs	75984ea28b9f53bf
+1	25	0	C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/arm64-v8a/CMakeFiles/cmake.verify_globs	75984ea28b9f53bf

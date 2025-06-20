@@ -1,0 +1,6 @@
+C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/RelWithDebInfo/3y6q183j/armeabi-v7a/CMakeFiles/appmodules.dir
+C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/RelWithDebInfo/3y6q183j/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/RelWithDebInfo/3y6q183j/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/RelWithDebInfo/3y6q183j/armeabi-v7a/BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir
+C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/RelWithDebInfo/3y6q183j/armeabi-v7a/BlePlx_autolinked_build/CMakeFiles/edit_cache.dir
+C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/RelWithDebInfo/3y6q183j/armeabi-v7a/BlePlx_autolinked_build/CMakeFiles/rebuild_cache.dir

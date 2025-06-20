@@ -1,0 +1,2 @@
+C:\Users\bjh73\OneDrive\바탕 화면\MyApplication\MyApplication\SmartDoorManager\node_modules\react-native-ble-plx\android\build\generated\source\codegen\jni\CMakeLists.txt
+C:\Users\bjh73\OneDrive\바탕 화면\MyApplication\MyApplication\SmartDoorManager\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup\CMakeLists.txt

@@ -1,0 +1,14 @@
+# ninja log v5
+7	44	0	C:/Users/bjh73/OneDrive/바탕 화면/MyApplication/MyApplication/SmartDoorManager/android/app/.cxx/Debug/5h70352o/arm64-v8a/CMakeFiles/cmake.verify_globs	63c9956bc9ab925
+51	5553	7720231100824286	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/States.cpp.o	5ce427a82c6291d9
+22	5957	7720231104909479	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/EventEmitters.cpp.o	9926d89a0bb3be0e
+36	6091	7720231106265434	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/BlePlxJSI-generated.cpp.o	2b13e604bc0a12e9
+14	6339	7720231108710628	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/BlePlx-generated.cpp.o	99eb58e4eb8d86d8
+59	6415	7720231109533381	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/Props.cpp.o	85dfc2ccd29cebdc
+44	6785	7720231113198247	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/ShadowNodes.cpp.o	f10bd2f8a97da75d
+6	6893	7720231114296270	CMakeFiles/appmodules.dir/4f6d38e0f74bba1ea9e624d89487698e/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	bef8a9af3ba6f5e
+29	6937	7720231114740233	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/ComponentDescriptors.cpp.o	3325f5d3b9b94850
+1	7055	7720231115758695	CMakeFiles/appmodules.dir/OnLoad.cpp.o	651260eb256d6e9f
+7056	7251	7720231117739374	C:/Users/bjh73/OneDrive/바탕 화면/MyApplication/MyApplication/SmartDoorManager/android/app/build/intermediates/cxx/Debug/5h70352o/obj/arm64-v8a/libappmodules.so	66ed59eeaada2f66
+26	82	0	C:/Users/bjh73/OneDrive/바탕 화면/MyApplication/MyApplication/SmartDoorManager/android/app/.cxx/Debug/5h70352o/arm64-v8a/CMakeFiles/cmake.verify_globs	63c9956bc9ab925
+20	65	0	C:/Users/bjh73/OneDrive/바탕 화면/MyApplication/MyApplication/SmartDoorManager/android/app/.cxx/Debug/5h70352o/arm64-v8a/CMakeFiles/cmake.verify_globs	63c9956bc9ab925

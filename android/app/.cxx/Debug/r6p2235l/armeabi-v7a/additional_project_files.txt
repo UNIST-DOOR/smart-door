@@ -1,0 +1,7 @@
+C:\Program Files\DoorApp\SmartDoorManager\android\app\.cxx\Debug\r6p2235l\armeabi-v7a\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\BlePlx-generated.cpp.o
+C:\Program Files\DoorApp\SmartDoorManager\android\app\.cxx\Debug\r6p2235l\armeabi-v7a\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\BlePlxJSI-generated.cpp.o
+C:\Program Files\DoorApp\SmartDoorManager\android\app\.cxx\Debug\r6p2235l\armeabi-v7a\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\ComponentDescriptors.cpp.o
+C:\Program Files\DoorApp\SmartDoorManager\android\app\.cxx\Debug\r6p2235l\armeabi-v7a\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\EventEmitters.cpp.o
+C:\Program Files\DoorApp\SmartDoorManager\android\app\.cxx\Debug\r6p2235l\armeabi-v7a\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\Props.cpp.o
+C:\Program Files\DoorApp\SmartDoorManager\android\app\.cxx\Debug\r6p2235l\armeabi-v7a\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\ShadowNodes.cpp.o
+C:\Program Files\DoorApp\SmartDoorManager\android\app\.cxx\Debug\r6p2235l\armeabi-v7a\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\States.cpp.o

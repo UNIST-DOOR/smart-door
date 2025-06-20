@@ -1,0 +1,14 @@
+# ninja log v5
+3	27	0	C:/Users/bjh73/OneDrive/바탕 화면/MyApplication/MyApplication/SmartDoorManager/android/app/.cxx/Debug/5h70352o/x86_64/CMakeFiles/cmake.verify_globs	283a9c82d5dc33
+52	2987	7720231301603345	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/States.cpp.o	6fbc470f393360f5
+23	3364	7720231305398130	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/EventEmitters.cpp.o	5e5d8b7d6351c289
+13	3521	7720231306984929	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/BlePlxJSI-generated.cpp.o	858d9fddc321c34d
+44	3808	7720231309582966	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/Props.cpp.o	d8538529d235609d
+5	3810	7720231309582966	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/BlePlx-generated.cpp.o	489b179633f30c97
+1	4175	7720231313476730	CMakeFiles/appmodules.dir/4f6d38e0f74bba1ea9e624d89487698e/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	aac48d90350f064e
+62	4192	7720231313688387	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/ShadowNodes.cpp.o	95267b247c6923b1
+34	4389	7720231315668073	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/ComponentDescriptors.cpp.o	ee68ad7d05b0596d
+71	4435	7720231316101711	CMakeFiles/appmodules.dir/OnLoad.cpp.o	b0c79b3c411544a8
+4435	4569	7720231317467215	C:/Users/bjh73/OneDrive/바탕 화면/MyApplication/MyApplication/SmartDoorManager/android/app/build/intermediates/cxx/Debug/5h70352o/obj/x86_64/libappmodules.so	d9eba5af5fe22d45
+3	27	0	C:/Users/bjh73/OneDrive/바탕 화면/MyApplication/MyApplication/SmartDoorManager/android/app/.cxx/Debug/5h70352o/x86_64/CMakeFiles/cmake.verify_globs	283a9c82d5dc33
+2	22	0	C:/Users/bjh73/OneDrive/바탕 화면/MyApplication/MyApplication/SmartDoorManager/android/app/.cxx/Debug/5h70352o/x86_64/CMakeFiles/cmake.verify_globs	283a9c82d5dc33
