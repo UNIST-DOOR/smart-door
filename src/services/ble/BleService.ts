@@ -137,10 +137,10 @@ class BleService {
   }
 
   /**
-   * 자동 스캔 및 연결 (oasyss_000101 기기 자동 찾기)
+   * 자동 스캔 및 연결 (oasyss_000201 기기 자동 찾기)
    * 문열림 버튼용 원클릭 기능
    */
-  async scanAndAutoConnect(targetDeviceName: string = 'oasyss_000101'): Promise<boolean> {
+  async scanAndAutoConnect(targetDeviceName: string = 'oasyss_000201'): Promise<boolean> {
     try {
       // 이미 연결되어 있으면 성공 반환
       if (this.isConnected()) {

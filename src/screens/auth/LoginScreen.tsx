@@ -43,15 +43,15 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
       // 로그인 시뮬레이션
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // 하드코딩된 로그인 로직: ID=101, 비밀번호=101
-      if (username === '101' && password === '101') {
-        Alert.alert('로그인 성공', '환영합니다! 101호님', [
+      // 하드코딩된 로그인 로직: ID=unist, 비밀번호=unist-123
+      if (username === 'unist' && password === 'unist-123') {
+        Alert.alert('로그인 성공', '환영합니다! 301동 201호님', [
           { text: '확인', onPress: () => {
             onLogin(); // 메인 화면으로 이동
           }}
         ]);
       } else {
-        Alert.alert('로그인 실패', '아이디 또는 비밀번호가 올바르지 않습니다.\n(ID: 101, 비밀번호: 101)');
+        Alert.alert('로그인 실패', '아이디 또는 비밀번호가 올바르지 않습니다.\n(ID: unist, 비밀번호: unist-123)');
       }
     } catch (error) {
       Alert.alert('오류', '로그인 중 오류가 발생했습니다.');

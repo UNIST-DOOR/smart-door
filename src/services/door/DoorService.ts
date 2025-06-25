@@ -256,6 +256,20 @@ class DoorService {
         break;
       }
       
+      case 0x21: {
+        // 공동현관문 열기 - 특별 오픈신호 (9바이트)
+        data[0] = 0xCC;        // 고정 헤더
+        data[1] = 0x21;        // 명령어 코드
+        data[2] = 0x01;        // 특별 신호
+        data[3] = 0x00;
+        data[4] = 0x00;
+        data[5] = 0x00;
+        data[6] = 0x00;
+        data[7] = 0x00;
+        data[8] = 0x00;
+        break;
+      }
+      
       case 0x05: {
         // 현재시간 설정 - Year, Month, Date, Hour, Min
         const time = getCurrentTimeComponents();

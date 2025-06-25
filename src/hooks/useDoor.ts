@@ -120,7 +120,7 @@ export const useDoor = (bleService: BleService | null) => {
    * 자동 문열기 기능 (스캔 → 연결 → 전송)
    * MainActivity.kt의 전체 플로우를 자동화
    */
-  const autoOpenDoor = async (targetDeviceName: string = 'oasyss_000101'): Promise<boolean> => {
+  const autoOpenDoor = async (targetDeviceName: string = 'oasyss_000201'): Promise<boolean> => {
     if (!bleService) {
       addLog('❌ BLE 서비스가 초기화되지 않았습니다', 'error');
       return false;
@@ -182,9 +182,87 @@ export const useDoor = (bleService: BleService | null) => {
     }
   };
 
+  /**
+   * 공동현관문 자동 열기 기능 (스캔 → 연결 → 전송)
+   * oasyss_0009999 기기 전용
+   */
+  const autoOpenEntranceDoor = async (targetDeviceName: string = 'oasyss_0009999'): Promise<boolean> => {
+    if (!bleService) {
+      addLog('❌ BLE 서비스가 초기화되지 않았습니다', 'error');
+      return false;
+    }
+
+    try {
+      setIsSending(true);
+      addLog('🚪 공동현관문 열기 시작...', 'info');
+      
+      // BLE 서비스 로그 콜백 설정 (실시간 로그 표시)
+      bleService.onError = (message: string) => {
+        addLog(message, 'info');
+      };
+      
+      // 1단계: BLE 초기화 및 권한 확인
+      addLog('1️⃣ BLE 초기화 중...', 'info');
+      const initialized = await bleService.initialize();
+      if (!initialized) {
+        addLog('❌ BLE 초기화 실패', 'error');
+        return false;
+      }
+      addLog('✅ BLE 초기화 완료', 'success');
+      
+      // 2단계: 자동 스캔 및 연결
+      addLog(`2️⃣ ${targetDeviceName} 기기 검색 중...`, 'info');
+      
+      // 기기 검색 및 연결 (상세 로그는 BLE 서비스에서 처리)
+      const connected = await bleService.scanAndAutoConnect(targetDeviceName);
+      if (!connected) {
+        addLog('❌ 기기 연결 실패', 'error');
+        return false;
+      }
+      addLog('✅ 기기 연결 성공', 'success');
+      
+      // 잠시 대기 (서비스 발견 완료 대기)
+      addLog('⏳ 서비스 발견 대기 중...', 'info');
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // 3단계: 0x21 명령어 전송 (공동현관문 열기)
+      addLog('3️⃣ 공동현관문 열기 명령 전송 중...', 'info');
+      const success = await sendCommand(0x21);
+      if (success) {
+        addLog('🎉 공동현관문 열기 완료!', 'success');
+        
+        // 공동현관문은 응답값이 없으므로 수동으로 연결해제
+        addLog('🔌 연결 해제 중...', 'info');
+        setTimeout(async () => {
+          try {
+            await bleService.disconnect();
+            addLog('✅ 연결해제 완료', 'success');
+          } catch (error) {
+            addLog(`⚠️ 연결해제 중 오류: ${error}`, 'warning');
+          }
+        }, 2000); // 1초 후 연결해제
+      } else {
+        addLog('❌ 공동현관문 열기 명령 전송 실패', 'error');
+      }
+      
+      return success;
+      
+    } catch (error) {
+      addLog(`❌ 공동현관문 열기 오류: ${error}`, 'error');
+      return false;
+    } finally {
+      setIsSending(false);
+      // 로그 콜백 해제
+      if (bleService) {
+        bleService.onError = undefined;
+      }
+    }
+  };
+
   const quickCommands = {
     openDoor: () => sendCommand(0x01),
-    autoOpenDoor, // 새로운 자동 문열기 기능
+    autoOpenDoor, // 기존 자동 문열기 기능
+    autoOpenEntranceDoor, // 새로운 공동현관문 열기 기능
     closeDoor: () => sendCommand(0x00),
     checkStatus: () => sendCommand(0x02),
     checkBattery: () => sendCommand(0x1C),

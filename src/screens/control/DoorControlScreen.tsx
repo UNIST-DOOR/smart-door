@@ -29,7 +29,6 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout }
 
   const {
     isSending,
-    sendCommand,
     quickCommands,
   } = useDoor(bleService);
 
@@ -73,7 +72,7 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout }
       }
 
       // 자동 문열기 실행 (스캔 → 연결 → 전송)
-      const success = await quickCommands.autoOpenDoor('oasyss_000101');
+      const success = await quickCommands.autoOpenDoor('oasyss_000201');
       
       if (success) {
         setIsDoorOpen(true);
@@ -98,17 +97,36 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout }
       // 권한 없거나 애뮬레이터일 때 무시
     }
     
-    if (!isConnected) {
-      Alert.alert('연결 필요', '먼저 공동현관문에 연결해주세요.');
-      return;
-    }
+    try {
+      // BLE 서비스 초기화 대기 (최대 5초)
+      if (!isInitialized || !bleService) {
+        console.log('BLE 초기화 대기 중...');
+        
+        // 최대 5초 동안 초기화 완료 대기
+        for (let i = 0; i < 50; i++) {
+          if (isInitialized && bleService) {
+            break;
+          }
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        
+        // 여전히 초기화되지 않았으면 오류
+        if (!isInitialized || !bleService) {
+          Alert.alert('오류', 'BLE 서비스 초기화에 실패했습니다.');
+          return;
+        }
+      }
 
-    // 공동현관문 열기 (적절한 명령어 사용)
-    const success = await sendCommand(0x0A); // 스마트폰BLE로 도어락 문열림
-    if (success) {
-      Alert.alert('성공', '공동현관문이 열렸습니다!');
-    } else {
-      Alert.alert('실패', '공동현관문 열기 명령을 전송할 수 없습니다.');
+      // 공동현관문 자동 열기 실행 (스캔 → 연결 → 전송)
+      const success = await quickCommands.autoOpenEntranceDoor('oasyss_0009999');
+      
+      if (success) {
+        Alert.alert('성공', '공동현관문이 열렸습니다!');
+      } else {
+        Alert.alert('실패', '공동현관문 열기에 실패했습니다. 다시 시도해주세요.');
+      }
+    } catch (error) {
+      Alert.alert('오류', `공동현관문 열기 중 오류가 발생했습니다: ${error}`);
     }
   };
 
@@ -168,7 +186,7 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout }
         <View style={styles.roomSection}>
           <View style={styles.roomNumberContainer}>
             <Text style={styles.roomPrefix}>Room </Text>
-            <Text style={styles.roomNumber}>101동 101호</Text>
+            <Text style={styles.roomNumber}>301동 201호</Text>
           </View>
           
           <View style={styles.timeInfo}>
