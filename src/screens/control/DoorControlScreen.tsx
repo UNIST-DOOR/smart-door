@@ -14,11 +14,19 @@ import { useBLE } from '../../hooks/useBLE';
 import { useDoor } from '../../hooks/useDoor';
 import { styles } from './DoorControlScreen.styles';
 
-interface DoorControlScreenProps {
-  onLogout: () => void;
+interface UserInfo {
+  username: string;
+  name: string;
+  room: string;
+  building: string;
 }
 
-export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout }) => {
+interface DoorControlScreenProps {
+  onLogout: () => void;
+  userInfo: UserInfo | null;
+}
+
+export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout, userInfo }) => {
   const [isDoorOpen, setIsDoorOpen] = useState(false);
   
   const {
@@ -186,7 +194,9 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout }
         <View style={styles.roomSection}>
           <View style={styles.roomNumberContainer}>
             <Text style={styles.roomPrefix}>Room </Text>
-            <Text style={styles.roomNumber}>301동 201호</Text>
+            <Text style={styles.roomNumber}>
+              {userInfo ? `${userInfo.building} ${userInfo.room}호` : '정보 없음'}
+            </Text>
           </View>
           
           <View style={styles.timeInfo}>

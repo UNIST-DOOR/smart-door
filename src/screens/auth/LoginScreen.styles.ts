@@ -96,10 +96,8 @@ export const styles = StyleSheet.create({
   },
   eyeButton: {
     padding: 14,
-  },
-  eyeIcon: {
-    fontSize: 18,
-    color: '#7F8C8D',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   loginButton: {
     backgroundColor: '#ED6A5E',

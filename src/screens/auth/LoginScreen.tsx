@@ -11,11 +11,18 @@ import {
   ScrollView,
   Vibration,
 } from 'react-native';
-// 간단한 아이콘 사용
+import Icon from 'react-native-vector-icons/Ionicons';
 import { styles } from './LoginScreen.styles';
 
+interface UserInfo {
+  username: string;
+  name: string;
+  room: string;
+  building: string;
+}
+
 interface LoginScreenProps {
-  onLogin: () => void;
+  onLogin: (user: UserInfo) => void;
 }
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
@@ -43,15 +50,37 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
       // 로그인 시뮬레이션
       await new Promise(resolve => setTimeout(() => resolve(undefined), 1000));
       
-      // 하드코딩된 로그인 로직: ID=unist, 비밀번호=unist-123
-      if (username === 'unist' && password === 'unist-123') {
-        Alert.alert('로그인 성공', '환영합니다! 301동 201호님', [
+      // 하드코딩된 로그인 로직: 학번 기반 계정들
+      const validAccounts = {
+        'unist': { password: 'unist-123', name: '관리자', room: '관리실', building: '관리동' },
+        '10001': { password: '123456', name: '김학생1', room: '101', building: '301동' },
+        '10002': { password: '123456', name: '김학생2', room: '102', building: '301동' },
+        '10003': { password: '123456', name: '김학생3', room: '103', building: '301동' },
+        '10004': { password: '123456', name: '김학생4', room: '201', building: '301동' },
+        '10005': { password: '123456', name: '김학생5', room: '202', building: '301동' },
+        '10006': { password: '123456', name: '김학생6', room: '203', building: '301동' },
+        '10007': { password: '123456', name: '김학생7', room: '301', building: '301동' },
+        '10008': { password: '123456', name: '김학생8', room: '302', building: '301동' },
+        '10009': { password: '123456', name: '김학생9', room: '303', building: '301동' }
+      };
+
+      const account = validAccounts[username as keyof typeof validAccounts];
+      
+      if (account && password === account.password) {
+        const userInfo: UserInfo = {
+          username: username,
+          name: account.name,
+          room: account.room,
+          building: account.building
+        };
+        
+        Alert.alert('로그인 성공', `환영합니다! ${account.building} ${account.room}호 ${account.name}님`, [
           { text: '확인', onPress: () => {
-            onLogin(); // 메인 화면으로 이동
+            onLogin(userInfo); // 사용자 정보와 함께 메인 화면으로 이동
           }}
         ]);
       } else {
-        Alert.alert('로그인 실패', '아이디 또는 비밀번호가 올바르지 않습니다.\n(ID: unist, 비밀번호: unist-123)');
+        Alert.alert('로그인 실패', '아이디 또는 비밀번호가 올바르지 않습니다.\n\n사용 가능한 계정:\n- unist (비밀번호: unist-123)\n- 10001~10009 (비밀번호: 123456)');
       }
     } catch (error) {
       Alert.alert('오류', '로그인 중 오류가 발생했습니다.');
@@ -127,9 +156,11 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
                 style={styles.eyeButton}
                 onPress={() => setShowPassword(!showPassword)}
               >
-                <Text style={styles.eyeIcon}>
-                  {showPassword ? '🙈' : '👁'}
-                </Text>
+                <Icon
+                  name={showPassword ? 'eye-off-outline' : 'eye-outline'}
+                  size={20}
+                  color="#666666"
+                />
               </TouchableOpacity>
             </View>
           </View>

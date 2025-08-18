@@ -45,6 +45,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("C:/Users/bjh73/smart-door/android/app/.cxx/Debug/462m2p6l/x86/BlePlx_autolinked_build/cmake_install.cmake")
+  include("C:/Users/bjh73/smart-door/android/app/.cxx/Debug/462m2p6l/x86/RNVectorIconsSpec_autolinked_build/cmake_install.cmake")
 
 endif()
 

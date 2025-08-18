@@ -9,20 +9,31 @@ import { SplashScreen } from './src/screens/SplashScreen';
 import { LoginScreen } from './src/screens/auth/LoginScreen';
 import { DoorControlScreen } from './src/screens/control/DoorControlScreen';
 
+// 사용자 정보 타입 정의
+interface UserInfo {
+  username: string;
+  name: string;
+  room: string;
+  building: string;
+}
+
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   const [showSplash, setShowSplash] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
 
   const handleSplashFinish = () => {
     setShowSplash(false);
   };
 
-  const handleLogin = () => {
+  const handleLogin = (user: UserInfo) => {
+    setUserInfo(user);
     setIsLoggedIn(true);
   };
 
   const handleLogout = () => {
+    setUserInfo(null);
     setIsLoggedIn(false);
   };
 
@@ -35,7 +46,7 @@ function App() {
     <View style={styles.container}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       {isLoggedIn ? (
-        <DoorControlScreen onLogout={handleLogout} />
+        <DoorControlScreen onLogout={handleLogout} userInfo={userInfo} />
       ) : (
         <LoginScreen onLogin={handleLogin} />
       )}
