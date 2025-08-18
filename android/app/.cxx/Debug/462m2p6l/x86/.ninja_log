@@ -1,0 +1,12 @@
+# ninja log v5
+48	204	0	C:/Users/bjh73/smart-door/android/app/.cxx/Debug/462m2p6l/x86/CMakeFiles/cmake.verify_globs	8e8f5c75d4eef16b
+255	3928	7772029563415670	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/States.cpp.o	408d09bbe9f154c3
+101	4187	7772029565938883	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/EventEmitters.cpp.o	f6f1c3267279d051
+162	4378	7772029567930109	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/BlePlxJSI-generated.cpp.o	4840d8fc668dda6c
+67	4576	7772029569895549	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/BlePlx-generated.cpp.o	17f5dbbcf16290b2
+130	4706	7772029571316160	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/Props.cpp.o	daee20a03b45c6f7
+6	4985	7772029573964371	CMakeFiles/appmodules.dir/C_/Users/bjh73/smart-door/android/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	afbeb3f6a5b150c6
+224	5061	7772029574793084	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/ShadowNodes.cpp.o	bd65e2ac5487cb13
+194	5250	7772029576551822	BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir/react/renderer/components/BlePlx/ComponentDescriptors.cpp.o	62bcfb9252befcf2
+38	5360	7772029577536099	CMakeFiles/appmodules.dir/OnLoad.cpp.o	64a12996c1037e35
+5361	5601	7772029580275164	C:/Users/bjh73/smart-door/android/app/build/intermediates/cxx/Debug/462m2p6l/obj/x86/libappmodules.so	9eb062fa526cccfa

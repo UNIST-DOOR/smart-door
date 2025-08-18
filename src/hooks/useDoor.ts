@@ -157,7 +157,7 @@ export const useDoor = (bleService: BleService | null) => {
       
       // 잠시 대기 (서비스 발견 완료 대기)
       addLog('⏳ 서비스 발견 대기 중...', 'info');
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(() => resolve(undefined), 1000));
       
       // 3단계: 0x01 명령어 전송 (문열기)
       addLog('3️⃣ 문열기 명령 전송 중...', 'info');
@@ -223,7 +223,7 @@ export const useDoor = (bleService: BleService | null) => {
       
       // 잠시 대기 (서비스 발견 완료 대기)
       addLog('⏳ 서비스 발견 대기 중...', 'info');
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(() => resolve(undefined), 1000));
       
       // 3단계: 0x21 명령어 전송 (공동현관문 열기)
       addLog('3️⃣ 공동현관문 열기 명령 전송 중...', 'info');

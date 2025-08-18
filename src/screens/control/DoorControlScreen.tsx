@@ -61,7 +61,7 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout }
           if (isInitialized && bleService) {
             break;
           }
-          await new Promise(resolve => setTimeout(resolve, 100));
+          await new Promise(resolve => setTimeout(() => resolve(undefined), 100));
         }
         
         // 여전히 초기화되지 않았으면 오류
@@ -107,7 +107,7 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout }
           if (isInitialized && bleService) {
             break;
           }
-          await new Promise(resolve => setTimeout(resolve, 100));
+          await new Promise(resolve => setTimeout(() => resolve(undefined), 100));
         }
         
         // 여전히 초기화되지 않았으면 오류

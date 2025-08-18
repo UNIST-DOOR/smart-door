@@ -41,7 +41,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
 
     try {
       // 로그인 시뮬레이션
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(() => resolve(undefined), 1000));
       
       // 하드코딩된 로그인 로직: ID=unist, 비밀번호=unist-123
       if (username === 'unist' && password === 'unist-123') {

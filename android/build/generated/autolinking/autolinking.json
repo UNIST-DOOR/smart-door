@@ -1,26 +1,26 @@
 {
-  "root": "C:\\Program Files\\DoorApp\\SmartDoorManager",
-  "reactNativePath": "C:\\Program Files\\DoorApp\\SmartDoorManager\\node_modules\\react-native",
+  "root": "C:\\Users\\bjh73\\smart-door",
+  "reactNativePath": "C:\\Users\\bjh73\\smart-door\\node_modules\\react-native",
   "reactNativeVersion": "0.80",
   "dependencies": {
     "react-native-ble-plx": {
-      "root": "C:\\Program Files\\DoorApp\\SmartDoorManager\\node_modules\\react-native-ble-plx",
+      "root": "C:\\Users\\bjh73\\smart-door\\node_modules\\react-native-ble-plx",
       "name": "react-native-ble-plx",
       "platforms": {
         "ios": {
-          "podspecPath": "C:\\Program Files\\DoorApp\\SmartDoorManager\\node_modules\\react-native-ble-plx\\react-native-ble-plx.podspec",
+          "podspecPath": "C:\\Users\\bjh73\\smart-door\\node_modules\\react-native-ble-plx\\react-native-ble-plx.podspec",
           "version": "3.5.0",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "C:\\Program Files\\DoorApp\\SmartDoorManager\\node_modules\\react-native-ble-plx\\android",
+          "sourceDir": "C:\\Users\\bjh73\\smart-door\\node_modules\\react-native-ble-plx\\android",
           "packageImportPath": "import com.bleplx.BlePlxPackage;",
           "packageInstance": "new BlePlxPackage()",
           "buildTypes": [],
           "libraryName": "BlePlx",
           "componentDescriptors": [],
-          "cmakeListsPath": "C:/Program Files/DoorApp/SmartDoorManager/node_modules/react-native-ble-plx/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cmakeListsPath": "C:/Users/bjh73/smart-door/node_modules/react-native-ble-plx/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -191,7 +191,7 @@
         {
           "name": "--path <path>",
           "description": "Path to the React Native project root.",
-          "default": "C:\\Program Files\\DoorApp\\SmartDoorManager"
+          "default": "C:\\Users\\bjh73\\smart-door"
         },
         {
           "name": "--platform <string>",
@@ -491,7 +491,7 @@
   "assets": [],
   "project": {
     "ios": {
-      "sourceDir": "C:\\Program Files\\DoorApp\\SmartDoorManager\\ios",
+      "sourceDir": "C:\\Users\\bjh73\\smart-door\\ios",
       "xcodeProject": {
         "name": "SmartDoorManager.xcodeproj",
         "path": ".",
@@ -500,7 +500,7 @@
       "assets": []
     },
     "android": {
-      "sourceDir": "C:\\Program Files\\DoorApp\\SmartDoorManager\\android",
+      "sourceDir": "C:\\Users\\bjh73\\smart-door\\android",
       "appName": "app",
       "packageName": "com.smartdoormanager",
       "applicationId": "com.smartdoormanager",
