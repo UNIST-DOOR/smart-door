@@ -1,0 +1,9 @@
+C:/Users/bjh73/smart-door/android/app/.cxx/RelWithDebInfo/4fs4y133/x86_64/CMakeFiles/appmodules.dir
+C:/Users/bjh73/smart-door/android/app/.cxx/RelWithDebInfo/4fs4y133/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/bjh73/smart-door/android/app/.cxx/RelWithDebInfo/4fs4y133/x86_64/CMakeFiles/rebuild_cache.dir
+C:/Users/bjh73/smart-door/android/app/.cxx/RelWithDebInfo/4fs4y133/x86_64/BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir
+C:/Users/bjh73/smart-door/android/app/.cxx/RelWithDebInfo/4fs4y133/x86_64/BlePlx_autolinked_build/CMakeFiles/edit_cache.dir
+C:/Users/bjh73/smart-door/android/app/.cxx/RelWithDebInfo/4fs4y133/x86_64/BlePlx_autolinked_build/CMakeFiles/rebuild_cache.dir
+C:/Users/bjh73/smart-door/android/app/.cxx/RelWithDebInfo/4fs4y133/x86_64/RNVectorIconsSpec_autolinked_build/CMakeFiles/react_codegen_RNVectorIconsSpec.dir
+C:/Users/bjh73/smart-door/android/app/.cxx/RelWithDebInfo/4fs4y133/x86_64/RNVectorIconsSpec_autolinked_build/CMakeFiles/edit_cache.dir
+C:/Users/bjh73/smart-door/android/app/.cxx/RelWithDebInfo/4fs4y133/x86_64/RNVectorIconsSpec_autolinked_build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,14 @@
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\BlePlx-generated.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\BlePlxJSI-generated.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\ComponentDescriptors.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\EventEmitters.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\Props.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\ShadowNodes.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\BlePlx_autolinked_build\CMakeFiles\react_codegen_BlePlx.dir\react\renderer\components\BlePlx\States.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\RNVectorIconsSpec_autolinked_build\CMakeFiles\react_codegen_RNVectorIconsSpec.dir\RNVectorIconsSpec-generated.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\RNVectorIconsSpec_autolinked_build\CMakeFiles\react_codegen_RNVectorIconsSpec.dir\react\renderer\components\RNVectorIconsSpec\ComponentDescriptors.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\RNVectorIconsSpec_autolinked_build\CMakeFiles\react_codegen_RNVectorIconsSpec.dir\react\renderer\components\RNVectorIconsSpec\EventEmitters.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\RNVectorIconsSpec_autolinked_build\CMakeFiles\react_codegen_RNVectorIconsSpec.dir\react\renderer\components\RNVectorIconsSpec\Props.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\RNVectorIconsSpec_autolinked_build\CMakeFiles\react_codegen_RNVectorIconsSpec.dir\react\renderer\components\RNVectorIconsSpec\RNVectorIconsSpecJSI-generated.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\RNVectorIconsSpec_autolinked_build\CMakeFiles\react_codegen_RNVectorIconsSpec.dir\react\renderer\components\RNVectorIconsSpec\ShadowNodes.cpp.o
+C:\Users\bjh73\smart-door\android\app\.cxx\RelWithDebInfo\4fs4y133\x86\RNVectorIconsSpec_autolinked_build\CMakeFiles\react_codegen_RNVectorIconsSpec.dir\react\renderer\components\RNVectorIconsSpec\States.cpp.o
