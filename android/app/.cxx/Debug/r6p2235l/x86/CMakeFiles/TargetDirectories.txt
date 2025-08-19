@@ -1,6 +1,0 @@
-C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/x86/CMakeFiles/appmodules.dir
-C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/x86/CMakeFiles/edit_cache.dir
-C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/x86/CMakeFiles/rebuild_cache.dir
-C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/x86/BlePlx_autolinked_build/CMakeFiles/react_codegen_BlePlx.dir
-C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/x86/BlePlx_autolinked_build/CMakeFiles/edit_cache.dir
-C:/Program Files/DoorApp/SmartDoorManager/android/app/.cxx/Debug/r6p2235l/x86/BlePlx_autolinked_build/CMakeFiles/rebuild_cache.dir
