@@ -68,7 +68,7 @@ export const EXTENDED_COMMANDS = [0x1D, 0x1E, 0x1F] as const;
 
 // App Settings
 export const APP_CONFIG = {
-  DEVICE_NAME_PREFIX: 'oasyss',
+  DEVICE_NAME_PREFIX: 'unist',
   SCAN_TIMEOUT: 8000,
   CONNECTION_TIMEOUT: 5000,
   MAX_RETRY_COUNT: 3,

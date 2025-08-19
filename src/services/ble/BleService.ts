@@ -137,10 +137,10 @@ class BleService {
   }
 
   /**
-   * 자동 스캔 및 연결 (oasyss_000201 기기 자동 찾기)
+   * 자동 스캔 및 연결 (unist 기기 자동 찾기)
    * 문열림 버튼용 원클릭 기능
    */
-  async scanAndAutoConnect(targetDeviceName: string = 'oasyss_000201'): Promise<boolean> {
+  async scanAndAutoConnect(targetDeviceName?: string): Promise<boolean> {
     try {
       // 이미 연결되어 있으면 성공 반환
       if (this.isConnected()) {
@@ -160,6 +160,12 @@ class BleService {
       return new Promise((resolve, reject) => {
         let found = false;
         
+        // 기기명이 제공되지 않으면 에러
+        if (!targetDeviceName) {
+          reject(new Error('기기명이 제공되지 않았습니다'));
+          return;
+        }
+
         // 스캔 시작
         this.manager.startDeviceScan(null, null, async (error, device) => {
           if (error) {
@@ -244,36 +250,52 @@ class BleService {
       this.connectedDevice = device;
 
       // Discover services and characteristics
+      this.onError?.(`🔍 서비스 검색 중...`);
       await device.discoverAllServicesAndCharacteristics();
       
       // 실제 기기에서 MAIN_UUID 서비스 사용
       const services = await device.services();
+      this.onError?.(`🔍 발견된 서비스 수: ${services.length}`);
       
       // MAIN_UUID 서비스 직접 찾기
+      this.onError?.(`🔍 대상 서비스 UUID: ${BLE_UUIDS.MAIN_UUID}`);
       const service = services.find(s => s.uuid.toLowerCase() === BLE_UUIDS.MAIN_UUID.toLowerCase());
       
       if (!service) {
-        this.onError?.(`❌ 서비스를 찾을 수 없습니다: MAIN_UUID`);
+        this.onError?.(`❌ 서비스를 찾을 수 없습니다: ${BLE_UUIDS.MAIN_UUID}`);
         return false;
       }
+      this.onError?.(`✅ 서비스 발견: ${service.uuid}`);
 
       // Get characteristics
       const characteristics = await service.characteristics();
+      this.onError?.(`🔍 발견된 특성 수: ${characteristics.length}`);
       
       // MAIN_UUID 서비스: 별도의 명령/알림 특성 사용
+      this.onError?.(`🔍 명령 특성 UUID: ${BLE_UUIDS.COMMAND_UUID}`);
+      this.onError?.(`🔍 알림 특성 UUID: ${BLE_UUIDS.NOTIFY_UUID}`);
+      
       const commandChar = characteristics.find(c => c.uuid.toLowerCase() === BLE_UUIDS.COMMAND_UUID.toLowerCase());
       const notifyChar = characteristics.find(c => c.uuid.toLowerCase() === BLE_UUIDS.NOTIFY_UUID.toLowerCase());
       
       if (!commandChar) {
-        this.onError?.(`❌ 명령 특성을 찾을 수 없습니다`);
+        this.onError?.(`❌ 명령 특성을 찾을 수 없습니다: ${BLE_UUIDS.COMMAND_UUID}`);
         return false;
       }
+      this.onError?.(`✅ 명령 특성 발견: ${commandChar.uuid}`);
       
       // 전송용과 수신용 특성 설정
       this.commandCharacteristic = commandChar;
       this.notifyCharacteristic = notifyChar || commandChar; // 알림 특성이 없으면 명령 특성 사용
+      
+      if (notifyChar) {
+        this.onError?.(`✅ 알림 특성 발견: ${notifyChar.uuid}`);
+      } else {
+        this.onError?.(`⚠️ 별도 알림 특성 없음, 명령 특성 사용: ${commandChar.uuid}`);
+      }
 
       // Enable notifications
+      this.onError?.(`🔔 Notify 구독 시작...`);
       try {
         await this.notifyCharacteristic!.monitor((error, characteristic) => {
           if (error) {
@@ -286,6 +308,23 @@ class BleService {
             const hexString = Array.from(buffer)
               .map(byte => byte.toString(16).toUpperCase().padStart(2, '0'))
               .join(' ');
+            
+            // 디버깅: 수신된 응답 로그 (앱 화면에 표시)
+            this.onError?.(`📡 수신응답: ${hexString}`);
+            
+            // 응답 코드 분석 로그
+            if (buffer.length >= 3) {
+              const command = buffer[1];
+              const responseCode = buffer[2];
+              this.onError?.(`📋 명령:0x${command.toString(16).toUpperCase()}, 응답:0x${responseCode.toString(16).toUpperCase()}`);
+              
+              if (responseCode === 0x81) {
+                this.onError?.(`🎉 성공응답(0x81) 수신 - 0.5초후 연결해제`);
+              } else {
+                this.onError?.(`⚠️ 예상외 응답코드: 0x${responseCode.toString(16).toUpperCase()}`);
+              }
+            }
+            
             this.onDataReceived?.(hexString);
             
             // 0x81 응답코드 받으면 자동 연결 해제
@@ -296,7 +335,9 @@ class BleService {
             }
           }
         });
+        this.onError?.(`✅ Notify 구독 성공!`);
       } catch (notifyError) {
+        this.onError?.(`❌ Notify 구독 실패: ${notifyError}`);
         // 알림 실패해도 연결은 성공으로 처리 (명령 전송은 가능)
       }
 

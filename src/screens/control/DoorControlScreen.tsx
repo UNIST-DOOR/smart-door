@@ -9,9 +9,12 @@ import {
   Image,
   ActivityIndicator,
   Vibration,
+  SafeAreaView,
 } from 'react-native';
 import { useBLE } from '../../hooks/useBLE';
 import { useDoor } from '../../hooks/useDoor';
+import { generateDeviceName } from '../../utils/helpers';
+
 import { styles } from './DoorControlScreen.styles';
 
 interface UserInfo {
@@ -62,8 +65,6 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout, 
     try {
       // BLE 서비스 초기화 대기 (최대 5초)
       if (!isInitialized || !bleService) {
-        console.log('BLE 초기화 대기 중...');
-        
         // 최대 5초 동안 초기화 완료 대기
         for (let i = 0; i < 50; i++) {
           if (isInitialized && bleService) {
@@ -79,8 +80,11 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout, 
         }
       }
 
+      // 사용자 정보 기반으로 기기명 생성
+      const deviceName = userInfo ? generateDeviceName(userInfo.building, userInfo.room) : 'unist_000000';
+      
       // 자동 문열기 실행 (스캔 → 연결 → 전송)
-      const success = await quickCommands.autoOpenDoor('oasyss_000201');
+      const success = await quickCommands.autoOpenDoor(deviceName);
       
       if (success) {
         setIsDoorOpen(true);
@@ -108,8 +112,6 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout, 
     try {
       // BLE 서비스 초기화 대기 (최대 5초)
       if (!isInitialized || !bleService) {
-        console.log('BLE 초기화 대기 중...');
-        
         // 최대 5초 동안 초기화 완료 대기
         for (let i = 0; i < 50; i++) {
           if (isInitialized && bleService) {
@@ -126,7 +128,7 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout, 
       }
 
       // 공동현관문 자동 열기 실행 (스캔 → 연결 → 전송)
-      const success = await quickCommands.autoOpenEntranceDoor('oasyss_0009999');
+      const success = await quickCommands.autoOpenEntranceDoor('unist_0009999');
       
       if (success) {
         Alert.alert('성공', '공동현관문이 열렸습니다!');
@@ -168,11 +170,16 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout, 
   };
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
+    <SafeAreaView style={styles.safeContainer}>
+      <StatusBar 
+        barStyle="dark-content" 
+        backgroundColor="#FFFFFF" 
+        translucent={false}
+      />
       
-      {/* Header */}
-      <View style={styles.header}>
+      <View style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
         <TouchableOpacity style={styles.helpButton} onPress={handleLogout}>
           <Text style={styles.helpText}>?</Text>
         </TouchableOpacity>
@@ -184,12 +191,15 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout, 
           />
         </View>
         <View style={styles.connectionStatus}>
-          <View style={[styles.statusDot, {backgroundColor: isConnected ? '#2ECC71' : '#E74C3C'}]} />
+          <View style={[
+            styles.statusDot,
+            isConnected ? styles.statusDotOn : styles.statusDotOff
+          ]} />
           <Text style={styles.statusText}>{isConnected ? '연결됨' : '연결 안됨'}</Text>
         </View>
       </View>
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={true}>
         {/* Room Info */}
         <View style={styles.roomSection}>
           <View style={styles.roomNumberContainer}>
@@ -267,9 +277,11 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout, 
           </TouchableOpacity>
         </View>
 
-
+        {/* Bottom Padding for safe scrolling */}
+        <View style={styles.bottomPadding} />
       </ScrollView>
-    </View>
+      </View>
+    </SafeAreaView>
   );
 };
 

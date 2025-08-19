@@ -50,6 +50,10 @@ export const useDoor = (bleService: BleService | null) => {
       addLog(`❌ 전송 실패: ${error}`, 'error');
     };
 
+    doorService.onInfo = (message: string) => {
+      addLog(message, 'info');
+    };
+
     return () => {
       doorService.cancelSending();
     };
@@ -120,7 +124,7 @@ export const useDoor = (bleService: BleService | null) => {
    * 자동 문열기 기능 (스캔 → 연결 → 전송)
    * MainActivity.kt의 전체 플로우를 자동화
    */
-  const autoOpenDoor = async (targetDeviceName: string = 'oasyss_000201'): Promise<boolean> => {
+  const autoOpenDoor = async (targetDeviceName?: string): Promise<boolean> => {
     if (!bleService) {
       addLog('❌ BLE 서비스가 초기화되지 않았습니다', 'error');
       return false;
@@ -161,6 +165,14 @@ export const useDoor = (bleService: BleService | null) => {
       
       // 3단계: 0x01 명령어 전송 (문열기)
       addLog('3️⃣ 문열기 명령 전송 중...', 'info');
+      addLog(`🔧 연결기기명: ${targetDeviceName}`, 'info');
+      addLog(`🔗 BLE연결: ${bleService.isConnected() ? '✅연결됨' : '❌연결안됨'}`, 'info');
+      
+      // DoorService에 연결된 기기명 설정
+      if (doorServiceRef.current && targetDeviceName) {
+        doorServiceRef.current.setConnectedDeviceName(targetDeviceName);
+      }
+      
       const success = await sendCommand(0x01);
       if (success) {
         addLog('🎉 문열기 완료!', 'success');
@@ -184,9 +196,9 @@ export const useDoor = (bleService: BleService | null) => {
 
   /**
    * 공동현관문 자동 열기 기능 (스캔 → 연결 → 전송)
-   * oasyss_0009999 기기 전용
+   * unist_0009999 기기 전용
    */
-  const autoOpenEntranceDoor = async (targetDeviceName: string = 'oasyss_0009999'): Promise<boolean> => {
+  const autoOpenEntranceDoor = async (targetDeviceName: string = 'unist_0009999'): Promise<boolean> => {
     if (!bleService) {
       addLog('❌ BLE 서비스가 초기화되지 않았습니다', 'error');
       return false;
@@ -240,7 +252,7 @@ export const useDoor = (bleService: BleService | null) => {
           } catch (error) {
             addLog(`⚠️ 연결해제 중 오류: ${error}`, 'warning');
           }
-        }, 2000); // 1초 후 연결해제
+        }, 2000); // 2초 후 연결해제
       } else {
         addLog('❌ 공동현관문 열기 명령 전송 실패', 'error');
       }

@@ -53,15 +53,15 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
       // 하드코딩된 로그인 로직: 학번 기반 계정들
       const validAccounts = {
         'unist': { password: 'unist-123', name: '관리자', room: '관리실', building: '관리동' },
-        '10001': { password: '123456', name: '김학생1', room: '101', building: '301동' },
-        '10002': { password: '123456', name: '김학생2', room: '102', building: '301동' },
-        '10003': { password: '123456', name: '김학생3', room: '103', building: '301동' },
-        '10004': { password: '123456', name: '김학생4', room: '201', building: '301동' },
-        '10005': { password: '123456', name: '김학생5', room: '202', building: '301동' },
-        '10006': { password: '123456', name: '김학생6', room: '203', building: '301동' },
-        '10007': { password: '123456', name: '김학생7', room: '301', building: '301동' },
-        '10008': { password: '123456', name: '김학생8', room: '302', building: '301동' },
-        '10009': { password: '123456', name: '김학생9', room: '303', building: '301동' }
+        '306301': { password: '1234', name: '김학생1', room: '301', building: '306동' },
+        '306302': { password: '1234', name: '김학생2', room: '302', building: '306동' },
+        '306303': { password: '1234', name: '김학생3', room: '303', building: '306동' },
+        '306304': { password: '1234', name: '김학생4', room: '304', building: '306동' },
+        '306305': { password: '1234', name: '김학생5', room: '305', building: '306동' },
+        '306306': { password: '1234', name: '김학생6', room: '306', building: '306동' },
+        '306307': { password: '1234', name: '김학생7', room: '307', building: '306동' },
+        '306308': { password: '1234', name: '김학생8', room: '308', building: '306동' },
+        '306309': { password: '1234', name: '김학생9', room: '309', building: '306동' }
       };
 
       const account = validAccounts[username as keyof typeof validAccounts];
@@ -80,7 +80,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
           }}
         ]);
       } else {
-        Alert.alert('로그인 실패', '아이디 또는 비밀번호가 올바르지 않습니다.\n\n사용 가능한 계정:\n- unist (비밀번호: unist-123)\n- 10001~10009 (비밀번호: 123456)');
+        Alert.alert('로그인 실패', '아이디 또는 비밀번호가 올바르지 않습니다.\n\n사용 가능한 계정:\n- unist (비밀번호: unist-123)\n- 10001~10009 (비밀번호: 123456)\n\n306동 301호~309호');
       }
     } catch (error) {
       Alert.alert('오류', '로그인 중 오류가 발생했습니다.');

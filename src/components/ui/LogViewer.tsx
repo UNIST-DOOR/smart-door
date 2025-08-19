@@ -1,17 +1,13 @@
 import React from 'react';
-import { ScrollView, Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { LogMessage } from '../../types/door';
 import { formatTimestamp } from '../../utils/helpers';
 
 interface LogViewerProps {
   logs: LogMessage[];
-  maxHeight?: number;
 }
 
-export const LogViewer: React.FC<LogViewerProps> = ({ 
-  logs, 
-  maxHeight = 300 
-}) => {
+export const LogViewer: React.FC<LogViewerProps> = ({ logs }) => {
   const getLogColor = (level: LogMessage['level']) => {
     switch (level) {
       case 'error': return '#FF3B30';
@@ -35,15 +31,12 @@ export const LogViewer: React.FC<LogViewerProps> = ({
   );
 
   return (
-    <View style={[styles.container, { maxHeight }]}>
-      <ScrollView
-        showsVerticalScrollIndicator={true}
-        style={styles.list}
-        contentContainerStyle={styles.listContent}
-        nestedScrollEnabled={true}
-      >
-        {logs.map(renderLogItem)}
-      </ScrollView>
+    <View style={styles.container}>
+      {logs.length === 0 ? (
+        <Text style={styles.placeholder}>아직 로그가 없습니다. 버튼을 눌러 동작을 시작하세요.</Text>
+      ) : (
+        logs.map(renderLogItem)
+      )}
     </View>
   );
 };
@@ -55,9 +48,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E5E5EA',
   },
-  list: {
-    flex: 1,
-  },
+  list: {},
   listContent: {
     padding: 8,
   },
@@ -75,4 +66,8 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     fontFamily: 'monospace',
   },
+  placeholder: {
+    fontSize: 12,
+    color: '#8E8E93',
+  }
 }); 

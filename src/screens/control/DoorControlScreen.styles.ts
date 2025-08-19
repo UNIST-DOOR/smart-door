@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
   container: {
     flex: 1,
     backgroundColor: '#ED6A5E',
@@ -47,11 +51,18 @@ export const styles = StyleSheet.create({
     borderRadius: 4,
     marginRight: 6,
   },
+  statusDotOn: {
+    backgroundColor: '#2ECC71',
+  },
+  statusDotOff: {
+    backgroundColor: '#E74C3C',
+  },
   statusText: {
     fontSize: 10,
     color: '#666666',
     fontWeight: '500',
   },
+
   content: {
     flex: 1,
     backgroundColor: '#ED6A5E',
@@ -184,5 +195,41 @@ export const styles = StyleSheet.create({
     fontWeight: '400',
     color: '#7F8C8D',
     marginTop: 2,
+  },
+  // Debug Log Section
+  logSection: {
+    backgroundColor: '#FFFFFF',
+    marginHorizontal: 20,
+    marginVertical: 20,
+    padding: 15,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#E5E5EA',
+  },
+  logTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#2C3E50',
+    marginBottom: 10,
+  },
+  logActions: {
+    flexDirection: 'row',
+    gap: 10,
+    marginBottom: 10,
+  },
+  logActionBtn: {
+    backgroundColor: '#EDF2F7',
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    borderRadius: 6,
+  },
+  logActionText: {
+    fontSize: 12,
+    color: '#2C3E50',
+    fontWeight: '600',
+  },
+  bottomPadding: {
+    height: 50,
+    backgroundColor: '#ED6A5E',
   },
 }); 

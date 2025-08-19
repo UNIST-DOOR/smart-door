@@ -45,10 +45,10 @@ export const formatTimestamp = (date: Date): string => {
 /**
  * Check if device name matches target prefix
  * @param deviceName Device name to check
- * @param prefix Target prefix (default: 'oasyss')
+ * @param prefix Target prefix (default: 'unist')
  * @returns True if device matches target
  */
-export const isTargetDevice = (deviceName: string | null, prefix: string = 'oasyss'): boolean => {
+export const isTargetDevice = (deviceName: string | null, prefix: string = 'unist'): boolean => {
   return deviceName !== null && deviceName.toLowerCase().startsWith(prefix.toLowerCase());
 };
 
@@ -108,4 +108,19 @@ export const parseHexInput = (text: string, defaultValue: number = 0xFF): number
   const padded = text.padStart(2, '0');
   const parsed = parseInt(padded, 16);
   return isNaN(parsed) ? defaultValue : parsed;
+};
+
+/**
+ * Generate device name based on user info (building + room)
+ * @param building Building info (ex: "301동")
+ * @param room Room info (ex: "101")
+ * @returns Device name (ex: "unist_301101")
+ */
+export const generateDeviceName = (building: string, room: string): string => {
+  // Extract numbers from building (301동 → 301)
+  const buildingNumber = building.replace(/[^0-9]/g, '');
+  // Extract numbers from room (101 → 101)
+  const roomNumber = room.replace(/[^0-9]/g, '');
+  
+  return `unist_${buildingNumber}${roomNumber}`;
 }; 

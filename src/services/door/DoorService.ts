@@ -13,21 +13,100 @@ class DoorService {
   private bleService: BleService;
   private sendQueue: SendQueueItem[] = [];
   private isSending: boolean = false;
+  private connectedDeviceName: string = '';
+  
+  // Response handling
+  private waitingForResponse: boolean = false;
+  private responsePromise: ((success: boolean) => void) | null = null;
+  private responseTimeout: any = null;
   
   // Event callbacks
   public onSendProgress?: (byte: number, remaining: number) => void;
   public onSendComplete?: () => void;
   public onSendError?: (error: string) => void;
+  public onInfo?: (message: string) => void;
 
   constructor(bleService: BleService) {
     this.bleService = bleService;
+    
+    // BLE 응답 데이터 수신 처리
+    this.bleService.onDataReceived = (data: string) => {
+      this.handleBleResponse(data);
+    };
+  }
+
+  /**
+   * 연결된 기기명 설정 (외부에서 호출)
+   */
+  setConnectedDeviceName(deviceName: string): void {
+    this.connectedDeviceName = deviceName;
+    this.onInfo?.(`🔧 연결기기명 설정: ${deviceName}`);
+  }
+
+  /**
+   * BLE ID 추출 (unist_306301 → 306301)
+   */
+  private extractBleId(): string {
+    const match = this.connectedDeviceName.match(/unist_(\d+)/);
+    return match ? match[1] : '000000';
+  }
+
+  /**
+   * 현재 날짜 생성 (YYYYMMDD 형식)
+   */
+  private getCurrentDate(): string {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}${month}${day}`;
+  }
+
+  /**
+   * 추가 데이터 생성 (bleID + date + key)
+   */
+  private generateAdditionalData(): number[] {
+    const bleId = this.extractBleId();
+    const date = this.getCurrentDate();
+    const key = '1';
+    
+    this.onInfo?.(`🔧 추가데이터 - BLE ID: ${bleId}, Date: ${date}, Key: ${key}`);
+    
+    const additionalData: number[] = [];
+    
+    // 구분자 추가
+    additionalData.push(0x2F); // /
+    
+    // BLE ID 각 자릿수를 hex로 변환
+    for (let i = 0; i < bleId.length; i++) {
+      const digit = parseInt(bleId[i], 10);
+      additionalData.push(digit);
+    }
+    
+    additionalData.push(0x2F); // /
+    
+    // Date 각 자릿수를 hex로 변환
+    for (let i = 0; i < date.length; i++) {
+      const digit = parseInt(date[i], 10);
+      additionalData.push(digit);
+    }
+    
+    additionalData.push(0x2F); // /
+    
+    // Key 추가
+    additionalData.push(parseInt(key, 10));
+    
+    additionalData.push(0x2F); // /
+    additionalData.push(0x0D); // 종료 마커
+    
+    return additionalData;
   }
 
   /**
    * Generate command data based on command code (완전한 MainActivity.kt 구현)
    */
   private generateCommandData(command: number, params?: CommandParams): number[] {
-    const commandByte = command & 0xFF;
+    const commandByte = command & 0xFF; // eslint-disable-line no-bitwise
     
     // 13바이트 확장 패킷이 필요한 명령어들
     const isExtended = (EXTENDED_COMMANDS as readonly number[]).includes(command);
@@ -45,22 +124,37 @@ class DoorService {
         // 원격 도어락 닫힘 - aPW1~aPW4 (관리자 비밀번호)
         data[3] = 0x00;
         data[4] = 0x00;
-        data[5] = 0x01;        // aPW1
-        data[6] = 0x02;        // aPW2
-        data[7] = 0x03;        // aPW3
-        data[8] = 0x04;        // aPW4
+        data[5] = 0x00;        // aPW1
+        data[6] = 0x00;        // aPW2
+        data[7] = 0x00;        // aPW3
+        data[8] = 0x00;        // aPW4
         break;
       }
       
       case 0x01: {
-        // 원격 도어락 열림 - aPW1~aPW4 (관리자 비밀번호)
+        // 원격 도어락 열림 - aPW1~aPW4 (관리자 비밀번호) + 추가 데이터
         data[3] = 0x00;        // Delay Time
         data[4] = 0x00;
-        data[5] = 0x01;        // aPW1
-        data[6] = 0x02;        // aPW2
-        data[7] = 0x03;        // aPW3
-        data[8] = 0x04;        // aPW4
-        break;
+        data[5] = 0x00;        // aPW1
+        data[6] = 0x00;        // aPW2
+        data[7] = 0x00;        // aPW3
+        data[8] = 0x00;        // aPW4
+        
+        // 추가 데이터 생성 및 병합
+        const additionalData = this.generateAdditionalData();
+        const baseData = data.slice(0, dataSize); // 기본 10바이트
+        
+        // 체크섬 계산 (기본 데이터만)
+        const checksumIndex = dataSize - 1;
+        baseData[checksumIndex] = calculateChecksum(baseData, checksumIndex);
+        
+        // 기본 데이터 + 추가 데이터 병합
+        const fullData = [...baseData, ...additionalData];
+        
+        this.onInfo?.(`🔧 기본데이터 (${baseData.length}바이트): ${baseData.map(b => b.toString(16).toUpperCase().padStart(2, '0')).join(' ')}`);
+        this.onInfo?.(`🔧 추가데이터 (${additionalData.length}바이트): ${additionalData.map(b => b.toString(16).toUpperCase().padStart(2, '0')).join(' ')}`);
+        
+        return fullData;
       }
       
       case 0x02: {
@@ -346,7 +440,66 @@ class DoorService {
   }
 
   /**
-   * Send command with parameters (from MainActivity.kt)
+   * BLE 응답 데이터 처리
+   */
+  private handleBleResponse(hexData: string): void {
+    if (!this.waitingForResponse) {
+      return;
+    }
+
+    try {
+      // Hex 문자열을 바이트 배열로 변환
+      const bytes = hexData.split(' ').map(hex => parseInt(hex, 16));
+      
+      if (bytes.length >= 3) {
+        const header = bytes[0];
+        const responseCode = bytes[1];  // 수정: 응답코드가 두 번째 바이트
+        const command = bytes[2];       // 수정: 명령이 세 번째 바이트
+        
+        this.onInfo?.(`📡 응답분석: 헤더=0x${header.toString(16).toUpperCase()}, 응답코드=0x${responseCode.toString(16).toUpperCase()}, 명령=0x${command.toString(16).toUpperCase()}`);
+        
+        // 응답 처리
+        if (responseCode === 0x81) {
+          this.onInfo?.(`🎉 장치응답: 성공 (0x81)`);
+          this.resolveResponse(true);
+        } else if (responseCode === 0x80) {
+          this.onInfo?.(`❌ 장치응답: 실패 (0x80)`);
+          this.resolveResponse(false);
+        } else {
+          this.onInfo?.(`⚠️ 알 수 없는 응답코드: 0x${responseCode.toString(16).toUpperCase()}`);
+          this.resolveResponse(false);
+        }
+      }
+    } catch (error) {
+      this.onSendError?.(`응답 처리 오류: ${error}`);
+    }
+  }
+
+  /**
+   * 응답 대기 완료 처리
+   */
+  private resolveResponse(success: boolean): void {
+    this.waitingForResponse = false;
+    
+    if (this.responseTimeout) {
+      clearTimeout(this.responseTimeout);
+      this.responseTimeout = null;
+    }
+    
+    if (this.responsePromise) {
+      this.responsePromise(success);
+      this.responsePromise = null;
+    }
+    
+    // 1초 후 자동 연결 해제
+    setTimeout(() => {
+      this.bleService.disconnect();
+      this.onInfo?.(`🔌 연결 해제 완료`);
+    }, 1000);
+  }
+
+  /**
+   * Send command with parameters and wait for response
    */
   async sendCommand(command: number, params?: CommandParams): Promise<boolean> {
     if (!this.bleService.isConnected()) {
@@ -362,6 +515,10 @@ class DoorService {
     try {
       const data = this.generateCommandData(command, params);
       
+      // 디버깅: 생성된 명령어 데이터 로그
+      const hexString = data.map(byte => byte.toString(16).toUpperCase().padStart(2, '0')).join(' ');
+      this.onInfo?.(`🔧 전송데이터: ${hexString}`);
+      
       // Clear queue and add new data
       this.sendQueue = [];
       data.forEach(byte => {
@@ -372,13 +529,49 @@ class DoorService {
       });
 
       this.isSending = true;
-      await this.sendNextByte();
       
-      return true;
+      // 전송 완료 후 응답 대기를 위한 Promise 생성
+      return new Promise(async (resolve) => {
+        // onSendComplete 콜백을 임시로 재정의
+        const originalOnSendComplete = this.onSendComplete;
+        
+        this.onSendComplete = () => {
+          // 원래 콜백 호출
+          originalOnSendComplete?.();
+          
+          // 응답 대기 시작
+          this.onInfo?.(`⏳ 장치 응답 대기 중... (3초 타임아웃)`);
+          this.waitForResponse(3000).then(resolve);
+          
+          // 원래 콜백 복원
+          this.onSendComplete = originalOnSendComplete;
+        };
+        
+        // 바이트 전송 시작
+        await this.sendNextByte();
+        this.onInfo?.(`✅ 명령어 0x${command.toString(16).toUpperCase()} 전송완료`);
+      });
+      
     } catch (error) {
-      this.onSendError?.(`Failed to send command: ${error}`);
+      this.onSendError?.(`❌ 명령어 전송실패: ${error}`);
       return false;
     }
+  }
+
+  /**
+   * 장치 응답 대기
+   */
+  private async waitForResponse(timeoutMs: number): Promise<boolean> {
+    return new Promise((resolve) => {
+      this.waitingForResponse = true;
+      this.responsePromise = resolve;
+      
+      // 타임아웃 설정
+      this.responseTimeout = setTimeout(() => {
+        this.onInfo?.(`⏰ 응답 타임아웃 (${timeoutMs}ms)`);
+        this.resolveResponse(false);
+      }, timeoutMs);
+    });
   }
 
   /**
