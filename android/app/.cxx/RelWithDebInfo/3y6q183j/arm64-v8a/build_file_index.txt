@@ -1,2 +1,0 @@
-C:\Program Files\DoorApp\SmartDoorManager\node_modules\react-native-ble-plx\android\build\generated\source\codegen\jni\CMakeLists.txt
-C:\Program Files\DoorApp\SmartDoorManager\node_modules\react-native\ReactAndroid\cmake-utils\default-app-setup\CMakeLists.txt
