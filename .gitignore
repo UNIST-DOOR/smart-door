@@ -13,7 +13,28 @@ smart-door-backend/
 # Build directories
 build/
 .cxx/
-ㅎㅎ
+
+# React Native codegen
+android/app/build/generated/
+node_modules/react-native/ReactAndroid/build/generated/
+
+# CMake
+android/app/.cxx/
+**/CMakeCache.txt
+**/CMakeFiles/
+
+# Gradle cache
+.gradle/
+android/.gradle/
+
+# Metro cache
+.metro/
+metro-cache/
+
+# Temporary files
+*.tmp
+*.temp
+
 # Android
 android/app/build/
 android/build/
