@@ -53,15 +53,15 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
       // 하드코딩된 로그인 로직: 학번 기반 계정들
       const validAccounts = {
         'unist': { password: 'unist-123', name: '관리자', room: '관리실', building: '관리동' },
-        '306301': { password: '1234', name: '김학생1', room: '301', building: '306동' },
-        '306302': { password: '1234', name: '김학생2', room: '302', building: '306동' },
-        '306303': { password: '1234', name: '김학생3', room: '303', building: '306동' },
-        '306304': { password: '1234', name: '김학생4', room: '304', building: '306동' },
-        '306305': { password: '1234', name: '김학생5', room: '305', building: '306동' },
-        '306306': { password: '1234', name: '김학생6', room: '306', building: '306동' },
-        '306307': { password: '1234', name: '김학생7', room: '307', building: '306동' },
-        '306308': { password: '1234', name: '김학생8', room: '308', building: '306동' },
-        '306309': { password: '1234', name: '김학생9', room: '309', building: '306동' }
+        '306301': { password: '1234', name: '학생', room: '301', building: '306동' },
+        '306302': { password: '1234', name: '학생', room: '302', building: '306동' },
+        '306303': { password: '1234', name: '학생', room: '303', building: '306동' },
+        '306304': { password: '1234', name: '학생', room: '304', building: '306동' },
+        '306305': { password: '1234', name: '학생', room: '305', building: '306동' },
+        '306306': { password: '1234', name: '학생', room: '306', building: '306동' },
+        '306307': { password: '1234', name: '학생', room: '307', building: '306동' },
+        '306308': { password: '1234', name: '학생', room: '308', building: '306동' },
+        '306309': { password: '1234', name: '학생', room: '309', building: '306동' }
       };
 
       const account = validAccounts[username as keyof typeof validAccounts];

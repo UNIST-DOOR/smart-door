@@ -171,10 +171,10 @@ export const DoorControlScreen: React.FC<DoorControlScreenProps> = ({ onLogout, 
 
   return (
     <SafeAreaView style={styles.safeContainer}>
-      <StatusBar 
-        barStyle="dark-content" 
-        backgroundColor="#FFFFFF" 
-        translucent={false}
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
       />
       
       <View style={styles.container}>
